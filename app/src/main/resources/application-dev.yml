@@ -22,7 +22,6 @@ spring:
         client-secret: ${AZURE_CLIENT_SECRET}
       keyvault:
         secret:
-          enabled: true
-          property-sources:
-            endpoint: https://cloud-oms-dev.vault.azure.net/      
+          property-source-enabled: true
+          endpoint: https://cloud-oms-dev.vault.azure.net/      
  
