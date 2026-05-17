@@ -1,15 +1,16 @@
 package com.cloud.oms.app.dto;
 
+import com.cloud.oms.app.Status.OrderStatus;
+
 import lombok.Data;
 
 @Data
 public class OrderDTO {
 
-    int orderId;
-    int userId;
-    int productId;
+    String orderId;
+    ProductDTO product;
     int quantity;
     double totalPrice;
-    String orderStatus;
+    OrderStatus orderStatus;
     
 }
