@@ -26,6 +26,5 @@ replay_pid*
 # vscode
 .vscode/
 
-# Local environment configs
-app/src/main/resources/application-dev.yml
-app/src/main/resources/application-test.yml
+# target directory
+target/
