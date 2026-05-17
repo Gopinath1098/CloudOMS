@@ -1,0 +1,29 @@
+package com.cloud.oms.app.entity;
+
+import com.github.f4b6a3.ulid.UlidCreator;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import lombok.Data;
+
+@Data
+@Entity
+public class ProductEntity {
+
+    @Id
+    String productId;
+    String productName;
+    String productDesc;
+    double productPrice;
+    int productStock;
+    String category;
+    String imageUrl;
+
+    @PrePersist
+    public void generateId() {
+        this.productId =
+            "PRD-" + UlidCreator.getHashUlid(System.currentTimeMillis(), productName);
+    }
+    
+}
