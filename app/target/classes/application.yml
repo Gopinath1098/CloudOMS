@@ -1,6 +1,8 @@
 spring:
   application:
     name: cloud-oms
+  profiles:
+    active: dev
 
 # Default settings (common to all profiles)
 management:

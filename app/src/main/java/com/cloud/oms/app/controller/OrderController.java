@@ -23,7 +23,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/order")
     public ResponseEntity<String> home() {
         return ResponseEntity.ok("Welcome to Cloud Native Order Management System for Orders")  ;
     }

@@ -2,12 +2,14 @@ package com.cloud.oms.app.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cloud.oms.app.dto.ProductDTO;
 import com.cloud.oms.app.entity.ProductEntity;
 import com.cloud.oms.app.repository.ProductRepository;
 
+@Service
 public class ProductService {
 
     private ProductRepository productRepository;

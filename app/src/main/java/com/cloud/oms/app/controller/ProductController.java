@@ -21,7 +21,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/product")
     public ResponseEntity<String> home() {
         return ResponseEntity.ok("Welcome to Cloud Native Order Management System for Inventory");
     }

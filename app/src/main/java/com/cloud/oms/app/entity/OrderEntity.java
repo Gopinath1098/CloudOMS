@@ -35,17 +35,18 @@ public class OrderEntity {
     @UpdateTimestamp
     LocalDateTime updatedAt;
 
-    @PrePersist
-    public void generateId() {
-        this.orderId =
-            "ORD-" + UlidCreator.getUlid(System.currentTimeMillis());
+   @PrePersist
+public void prePersist() {
+    // Generate ID if not already set
+    if (orderId == null) {
+        this.orderId = "ORD-" + UlidCreator.getUlid(System.currentTimeMillis());
     }
 
-     @PrePersist
-    public void prePersist() {
-        if (orderStatus == null) {
-            orderStatus = OrderStatus.NEW; 
-        }
+    // Set default status if not provided
+    if (orderStatus == null) {
+        orderStatus = OrderStatus.NEW;
     }
+}
+
     
 }
