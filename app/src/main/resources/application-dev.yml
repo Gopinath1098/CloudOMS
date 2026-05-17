@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/omsdb-dev
-    username: postgres
-    password: your_password
+    url: ${cloud-oms-db-url}
+    username: ${cloud-oms-db-username}
+    password: ${cloud-oms-db-password}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -13,3 +13,12 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+  cloud:
+    azure:
+      keyvault:
+        secret:
+          enabled: true
+          property-sources:
+            - endpoint: https://cloud-oms-dev.vault.azure.net/      
+ 

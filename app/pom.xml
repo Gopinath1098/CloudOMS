@@ -70,6 +70,12 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.azure.spring</groupId>
+			<artifactId>azure-spring-boot-starter-keyvault-secrets</artifactId>
+			<version>3.14.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

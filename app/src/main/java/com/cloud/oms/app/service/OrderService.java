@@ -37,13 +37,13 @@ public class OrderService {
 
     public List<OrderDTO> getOrderByState(OrderStatus state) {
         // Implement logic to retrieve order by state
-        List<OrderEntity> orderEntities = (List<OrderEntity>) orderRepository.findByOrderState(state);
+        List<OrderEntity> orderEntities = (List<OrderEntity>) orderRepository.findByOrderStatus(state);
         if(orderEntities == null || orderEntities.isEmpty()) {
            throw new OrderNotFoundException("No Order Found with state: " + state);
         }
         return orderEntities.stream().map(this::ConvertToDTO).toList();
     }
-    
+
     public String placeOrder(List<OrderDTO> orderDTO) {
         // Implement logic to place an order
         List<OrderEntity> savedOrders = null;
@@ -112,7 +112,7 @@ public class OrderService {
 
         }return orderDTO.size() + " Orders returned successfully";
     } 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     private void updateProductStock(String productId, int quantity, boolean isReturn) {
         if(isReturn) {
             productService.updateInventory(productId,quantity,true);
