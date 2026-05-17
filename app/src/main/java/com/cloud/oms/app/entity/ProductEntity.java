@@ -1,5 +1,10 @@
 package com.cloud.oms.app.entity;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import com.github.f4b6a3.ulid.UlidCreator;
 
 import jakarta.persistence.Entity;
@@ -19,6 +24,10 @@ public class ProductEntity {
     int productStock;
     String category;
     String imageUrl;
+    @CreationTimestamp
+    LocalDateTime createdAt;
+    @UpdateTimestamp
+    LocalDateTime updatedAt;
 
     @PrePersist
     public void generateId() {
