@@ -1,3 +1,5 @@
 {
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.configuration.enableAnnotationProcessing": true,
+    "java.compile.nullAnalysis.mode": "automatic"
 } 
