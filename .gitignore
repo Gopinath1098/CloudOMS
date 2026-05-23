@@ -28,3 +28,15 @@ replay_pid*
 
 # target directory
 target/
+
+# eclipse
+.project
+.classpath
+.settings/
+.metadata/
+
+app/src/main/resources/application.yml
+
+
+
+
