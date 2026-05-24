@@ -49,7 +49,7 @@ public class ProductService {
         ProductEntity updatedProduct = productRepository.save(existingProduct);
         return ConvertToDTO(updatedProduct);
     }
-    @Transactional(rollbackFor = Exception.class)
+    //@Transactional(rollbackFor = Exception.class)
     public void updateInventory(String productId, int quantity, boolean isReturn) {
         // Implement logic to update product inventory
         ProductEntity existingProduct = productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found with id: " + productId));
@@ -61,7 +61,11 @@ public class ProductService {
             }
             existingProduct.setProductStock(existingProduct.getProductStock() - quantity);
         }
-        productRepository.save(existingProduct);
+        if(existingProduct.getProductStock() < 0) {
+            existingProduct.setProductStock(0);
+            productRepository.save(existingProduct);
+            throw new RuntimeException("Inventory is out of stock for product with id: " + productId);
+        }else productRepository.save(existingProduct);
     }
     
      public static ProductDTO ConvertToDTO(ProductEntity productEntity) {

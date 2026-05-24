@@ -28,12 +28,12 @@ public class OrderController {
         return ResponseEntity.ok("Welcome to Cloud Native Order Management System for Orders")  ;
     }
 
-    @GetMapping("/vieworder/{id}")
+    @GetMapping("auth/vieworder/{id}")
     public ResponseEntity<OrderDTO> viewOrder(@PathVariable String id) {
         return ResponseEntity.ok(orderService.getOrderById(id));
     }
 
-    @GetMapping("/vieworder/{status}")
+    @GetMapping("auth/vieworder/{status}")
     public ResponseEntity<List<OrderDTO>> viewOrder(@PathVariable OrderStatus status) {
         return ResponseEntity.ok(orderService.getOrderByState(status));
     }
@@ -43,12 +43,12 @@ public class OrderController {
         return ResponseEntity.ok(orderService.placeOrder(orderDTO));
     }
 
-    @PutMapping("/updateorder/{id}")
+    @PutMapping("auth/updateorder/{id}")
     public ResponseEntity<String> updateOrder(@PathVariable String id) {
         return ResponseEntity.ok(orderService.updateOrder(id));
     }
 
-    @PutMapping("/returnorder/")
+    @PutMapping("auth/returnorder/")
     public ResponseEntity<String> returnOrders(@RequestBody List<OrderDTO> orderDTO) {
         return ResponseEntity.ok(orderService.returnOrder(orderDTO));
     }

@@ -32,17 +32,17 @@ public class ProductController {
         return ResponseEntity.ok(productDTO);
     }
 
-    @PostMapping("/addproduct/{id}")
+    @PostMapping("auth/addproduct/{id}")
     public ResponseEntity<String> addProduct(@RequestBody ProductDTO productDTO) {
         return ResponseEntity.ok(productService.addProduct(productDTO).getProductId()+"added successfully");
     }
 
-    @PutMapping("/updateproduct/{id}")
+    @PutMapping("auth/updateproduct/{id}")
     public ResponseEntity<String> updateProduct(@RequestBody ProductDTO productDTO) {
         return ResponseEntity.ok(productService.updateProduct(productDTO).getProductId()+"updated successfully");
     }
 
-    @PatchMapping("/patchInventory/{id}/{quantity}")
+    @PatchMapping("auth/patchInventory/{id}/{quantity}")
     public ResponseEntity<String> patchInventory(@PathVariable String id, @PathVariable int quantity) {
         // Implementation for patching inventory
         productService.updateInventory(id, quantity, true);
