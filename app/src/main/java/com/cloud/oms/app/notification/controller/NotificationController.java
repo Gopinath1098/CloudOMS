@@ -11,9 +11,9 @@ import com.cloud.oms.app.notification.dto.OrderCreatedEvent;
 @RestController("/notifications")
 public class NotificationController {
 
-    @PostMapping("/order-created")
+    @PostMapping("/order-created/{status}/{orderId}")
     public ResponseEntity<String> sendNotification(
-            @RequestBody OrderCreatedEvent event,@PathVariable String status,@PathVariable String orderId) {
+            @PathVariable String status,@PathVariable String orderId) {
 
         return ResponseEntity.ok(
             "Order with ID " + orderId + " and status " + status + " Notification sent"
