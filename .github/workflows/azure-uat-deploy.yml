@@ -1,10 +1,10 @@
 name: Build and Deploy Spring Boot App to Azure WebApp
 
-on:
-  push:
-    branches:
-      - uat
-  workflow_dispatch:
+# on:
+#   push:
+#     branches:
+#       - uat
+#   workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -44,5 +44,5 @@ jobs:
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: cloud-oms-dev
+          app-name: cloud-oms-uat
           package: target/*.jar
