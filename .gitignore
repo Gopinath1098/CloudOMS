@@ -23,8 +23,24 @@
 hs_err_pid*
 replay_pid*
 
-# vscode
+# VS Code
 .vscode/
 
 # target directory
 target/
+
+# eclipse
+.project
+.classpath
+.settings/
+.metadata/
+
+# IntelliJ IDEA
+.idea/
+
+
+app/src/main/resources/application.yml
+
+
+
+
