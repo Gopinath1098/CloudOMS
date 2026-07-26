@@ -26,21 +26,8 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZURE-CLIENT-ID }}
-          tenant-id: ${{ secrets.AZURE-TENANT-ID }}
-          subscription-id: ${{ secrets.AZURE-SUBSCRIPTION-ID }}
-          client-secret: ${{ secrets.AZURE-CLIENT-SECRET }}
-
-      - name: Get secrets from Key Vault
-        uses: azure/get-keyvault-secrets@v1
-        with:
-          keyvault: cloud-oms-dev
-          secrets: |
-            AZURE-CLIENT-ID
-            AZURE-TENANT-ID
-            AZURE-SUBSCRIPTION-ID
-            AZURE-CLIENT-SECRET
-
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v2
         with:
