@@ -13,3 +13,6 @@ POC on Cloud Native OMS Application
       Notification Service
         ↓
       PostgreSQL + Azure Service Bus
+
+  *Monolithic OMS Project*
+  http://localhost:8082/swagger-ui/index.html#/
