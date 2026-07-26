@@ -1,19 +1,14 @@
 package com.cloud.oms.app.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.cloud.oms.app.dto.ProductDTO;
 import com.cloud.oms.app.service.ProductService;
 
 @RestController
-public class ProductController {
+@RequestMapping("/api/product")
+class ProductController {
 
     private ProductService productService;
 
@@ -21,32 +16,36 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/product")
+    @GetMapping()
     public ResponseEntity<String> home() {
-        return ResponseEntity.ok("Welcome to Cloud Native Order Management System for Inventory");
+        return ResponseEntity.ok(" Welcome to Cloud Native Order Management System for Inventory");
     }
 
-    @GetMapping("/viewproduct/{id}")
+    @GetMapping("/view/{id}")
     public ResponseEntity<ProductDTO> viewProduct(@PathVariable String id) {
         ProductDTO productDTO = productService.getProductById(id);
         return ResponseEntity.ok(productDTO);
     }
 
-    @PostMapping("/addproduct/{id}")
+    @PostMapping("auth/add/{id}")
     public ResponseEntity<String> addProduct(@RequestBody ProductDTO productDTO) {
-        return ResponseEntity.ok(productService.addProduct(productDTO).getProductId()+"added successfully");
+        return ResponseEntity.ok(productService.addProduct(productDTO).getProductId()+" added successfully");
     }
 
-    @PutMapping("/updateproduct/{id}")
+    @PutMapping("auth/update/{id}")
     public ResponseEntity<String> updateProduct(@RequestBody ProductDTO productDTO) {
-        return ResponseEntity.ok(productService.updateProduct(productDTO).getProductId()+"updated successfully");
+        return ResponseEntity.ok(productService.updateProduct(productDTO).getProductId()+" updated successfully");
     }
 
-    @PatchMapping("/patchInventory/{id}/{quantity}")
-    public ResponseEntity<String> patchInventory(@PathVariable String id, @PathVariable int quantity) {
+    @PatchMapping("auth/patch")
+    public ResponseEntity<String> patchInventory(@RequestParam String id, @RequestParam int quantity) {
         // Implementation for patching inventory
         productService.updateInventory(id, quantity, true);
-        return ResponseEntity.ok("Inventory updated successfully");
+        return ResponseEntity.ok(" Inventory updated successfully");
     }
-
+    @DeleteMapping("auth/delete")
+    public ResponseEntity<String> deleteProduct(@PathVariable String id){
+        productService.deleteProduct(id);
+        return ResponseEntity.ok(id+" Deleted Successfully");
+    }
 }
