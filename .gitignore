@@ -39,7 +39,7 @@ target/
 .idea/
 
 
-# app/src/main/resources/application.yml
+app/src/main/resources/application-local.yml
 
 
 
