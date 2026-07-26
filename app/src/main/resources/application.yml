@@ -4,6 +4,18 @@ spring:
   profiles:
     active: dev
 
+  cloud:
+    azure:
+      credential:
+        client-id: ${AZURE_CLIENT_ID}
+        tenant-id: ${AZURE_TENANT_ID}
+        client-secret: ${AZURE_CLIENT_SECRET}
+
+      keyvault:
+        secret:
+          property-sources:
+            - endpoint: https://cloud-oms-dev.vault.azure.net/
+
 # Default settings (common to all profiles)
 management:
   endpoints:
