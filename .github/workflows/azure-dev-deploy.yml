@@ -6,6 +6,10 @@ on:
       - dev
   workflow_dispatch:
 
+    paths:
+      - 'src/**'
+      - 'pom.xml'
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -27,9 +31,9 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-          
+
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v2
         with:
           app-name: cloud-oms-dev
-          package: target/*.jar
+          package: app/target/*.jar
