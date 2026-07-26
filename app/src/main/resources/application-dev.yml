@@ -3,10 +3,10 @@ spring:
     url: ${cloud-oms-db-url}
     username: ${cloud-oms-db-username}
     password: ${cloud-oms-db-password}
-    driver-class-name: org.postgresql.Driver
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
 
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.SQLServerDialect
     hibernate:
       ddl-auto: update   # options: none, validate, update, create, create-drop
     show-sql: true
