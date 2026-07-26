@@ -4,26 +4,14 @@ spring:
   profiles:
     active: dev
 
-  cloud:
-    azure:
-      credential:
-        client-id: ${AZURE_CLIENT_ID}
-        tenant-id: ${AZURE_TENANT_ID}
-        client-secret: ${AZURE_CLIENT_SECRET}
-
-      keyvault:
-        secret:
-          property-sources:
-            - endpoint: https://cloud-oms-dev.vault.azure.net/
-
   datasource:
-    url: ${cloud-oms-db-url}
-    username: ${cloud-oms-db-username}
-    password: ${cloud-oms-db-password}
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:postgresql://localhost:5432/omsdb-dev
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
 
   jpa:
-    database-platform: org.hibernate.dialect.SQLServerDialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update   # options: none, validate, update, create, create-drop
     show-sql: true
