@@ -1,7 +1,7 @@
 # CloudOMS
 POC on Cloud Native OMS Application
 
-* Cloud Native OMS Architecture*
+* Cloud Native OMS Architecture plan*
 
       Client
         ↓
@@ -14,5 +14,5 @@ POC on Cloud Native OMS Application
         ↓
       PostgreSQL + Azure Service Bus
 
-  *Monolithic OMS Project*
-  http://localhost:8082/swagger-ui/index.html#/
+  *Monolithic OMS Project prototype*
+  https://cloud-oms-dev-atgdcmhghwhsfmgp.centralindia-01.azurewebsites.net/swagger-ui/index.html
