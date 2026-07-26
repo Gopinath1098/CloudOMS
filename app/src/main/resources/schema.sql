@@ -20,6 +20,9 @@ CREATE TABLE IF NOT EXISTS order_entity (
     order_status VARCHAR(50) NOT NULL DEFAULT 'NEW',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    email VARCHAR(255) not null,
+    customer_name VARCHAR(255) not null,
+    mobile_no  NUMERIC(10) not null,
     CONSTRAINT fk_order_product FOREIGN KEY (product_id)
         REFERENCES product_entity(product_id)
 );

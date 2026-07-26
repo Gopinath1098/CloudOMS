@@ -1,7 +1,9 @@
 package com.cloud.oms.app.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.cloud.oms.app.exception.ProductNotValidException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,7 +58,7 @@ public class ProductService {
         if(isReturn) {
             existingProduct.setProductStock(existingProduct.getProductStock() + quantity);
         } else {
-            if(existingProduct.getProductStock() < quantity || existingProduct.getProductStock() <= 0) {
+            if(existingProduct.getProductStock() < quantity || existingProduct.getProductStock() < 1) {
                 throw new RuntimeException("Inventory is out of stock for product with id: " + productId);
             }
             existingProduct.setProductStock(existingProduct.getProductStock() - quantity);
@@ -66,6 +68,11 @@ public class ProductService {
             productRepository.save(existingProduct);
             throw new RuntimeException("Inventory is out of stock for product with id: " + productId);
         }else productRepository.save(existingProduct);
+    }
+
+    public void deleteProduct(String id){
+        Optional<ProductEntity> product =  productRepository.findById(id);
+        product.orElseThrow(()->new ProductNotValidException("Product Id not Found"));
     }
     
      public static ProductDTO ConvertToDTO(ProductEntity productEntity) {

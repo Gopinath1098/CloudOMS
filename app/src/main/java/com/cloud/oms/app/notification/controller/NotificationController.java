@@ -1,20 +1,18 @@
 package com.cloud.oms.app.notification.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.cloud.oms.app.notification.dto.OrderCreatedEvent;
-
-@RestController("/notifications")
+@RestController()
+@RequestMapping("/notifications")
+@Slf4j
 public class NotificationController {
 
-    @PostMapping("/order-created/{status}/{orderId}")
+    @PostMapping("/order/notify")
     public ResponseEntity<String> sendNotification(
-            @PathVariable String status,@PathVariable String orderId) {
-
+            @RequestParam String status,@RequestParam String orderId) {
+        log.info("Order with ID " + orderId + " and status " + status + " Notification sent");
         return ResponseEntity.ok(
             "Order with ID " + orderId + " and status " + status + " Notification sent"
         );
