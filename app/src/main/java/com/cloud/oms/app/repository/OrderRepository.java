@@ -13,7 +13,7 @@ import com.cloud.oms.app.entity.OrderEntity;
 @Repository
 public interface OrderRepository extends JpaRepository<OrderEntity, String> {
 
-    @Query("SELECT o FROM OrderEntity o WHERE o.orderState = :state")
-    List<OrderEntity> findByOrderState(@Param("state") OrderStatus state);
+    @Query("SELECT o FROM OrderEntity o WHERE o.orderStatus = :status")
+    List<OrderEntity> findByOrderStatus(@Param("status") OrderStatus status);
     
 }

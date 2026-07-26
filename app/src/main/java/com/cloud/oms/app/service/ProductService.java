@@ -1,13 +1,17 @@
 package com.cloud.oms.app.service;
 
 import java.util.List;
+import java.util.Optional;
 
+import com.cloud.oms.app.exception.ProductNotValidException;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cloud.oms.app.dto.ProductDTO;
 import com.cloud.oms.app.entity.ProductEntity;
 import com.cloud.oms.app.repository.ProductRepository;
 
+@Service
 public class ProductService {
 
     private ProductRepository productRepository;
@@ -47,19 +51,28 @@ public class ProductService {
         ProductEntity updatedProduct = productRepository.save(existingProduct);
         return ConvertToDTO(updatedProduct);
     }
-    @Transactional(rollbackFor = Exception.class)
+    //@Transactional(rollbackFor = Exception.class)
     public void updateInventory(String productId, int quantity, boolean isReturn) {
         // Implement logic to update product inventory
         ProductEntity existingProduct = productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found with id: " + productId));
         if(isReturn) {
             existingProduct.setProductStock(existingProduct.getProductStock() + quantity);
         } else {
-            if(existingProduct.getProductStock() < quantity || existingProduct.getProductStock() <= 0) {
+            if(existingProduct.getProductStock() < quantity || existingProduct.getProductStock() < 1) {
                 throw new RuntimeException("Inventory is out of stock for product with id: " + productId);
             }
             existingProduct.setProductStock(existingProduct.getProductStock() - quantity);
         }
-        productRepository.save(existingProduct);
+        if(existingProduct.getProductStock() < 0) {
+            existingProduct.setProductStock(0);
+            productRepository.save(existingProduct);
+            throw new RuntimeException("Inventory is out of stock for product with id: " + productId);
+        }else productRepository.save(existingProduct);
+    }
+
+    public void deleteProduct(String id){
+        Optional<ProductEntity> product =  productRepository.findById(id);
+        product.orElseThrow(()->new ProductNotValidException("Product Id not Found"));
     }
     
      public static ProductDTO ConvertToDTO(ProductEntity productEntity) {
