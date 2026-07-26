@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - dev
-      - uat
-      - main
+      # - uat
+      # - main
   workflow_dispatch:
     paths:
       - 'src/**'
