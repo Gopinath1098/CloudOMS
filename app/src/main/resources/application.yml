@@ -3,6 +3,8 @@ spring:
     name: cloud-oms
   profiles:
     active: dev
+  workflow:
+    enabled: true
 
 # Default settings (common to all profiles)
 management:
