@@ -4,36 +4,6 @@ spring:
   profiles:
     active: dev
 
-  datasource:
-    url: jdbc:postgresql://localhost:5432/omsdb-dev
-    username: postgres
-    password: password
-    driver-class-name: org.postgresql.Driver
-
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    hibernate:
-      ddl-auto: update   # options: none, validate, update, create, create-drop
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-
-  datasource:
-    url: ${cloud-oms-db-url}
-    username: ${cloud-oms-db-username}
-    password: ${cloud-oms-db-password}
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-
-  jpa:
-    database-platform: org.hibernate.dialect.SQLServerDialect
-    hibernate:
-      ddl-auto: update   # options: none, validate, update, create, create-drop
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
-
 # Default settings (common to all profiles)
 management:
   endpoints:
@@ -44,4 +14,4 @@ management:
     db:
       enabled: true
     diskspace:
-      enabled: true
+      enabled: t
