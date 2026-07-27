@@ -14,4 +14,4 @@ management:
     db:
       enabled: true
     diskspace:
-      enabled: true
+      enabled: false
